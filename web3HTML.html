@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p> Web3 Interaction</p>
+    <h5>  Account Balance</h5>
+    <p id='w3'></p><br> <br>
+    <h5>  protocol Version</h5>
+    <p id='proto'></p> <br><br>
+    <h4 id='accounts'> Accounts present are ...</h4>
+    <!-- <script src="https://github.com/ethereumproject/web3.js/blob/develop/dist/web3.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js"></script> -->
+    <script>src="https://code.jquery.com/jquery-3.5.1.min.js" </script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script>
+        // ------------Run the Ganache-cli -g Before running this HTML ---------------------
+        
+            let web3 = new Web3('ws://localhost:8545');
+            const ganacheAcc1='0x874083C81b5Ed4F3A742874d34559266738b1C14';
+
+            const balfunc=(err,bal)=>{
+                    console.log(bal);
+                    document.getElementById('w3').innerHTML=bal;
+            }
+            web3.eth.getBalance(ganacheAcc1,balfunc);
+            var ver=web3.eth.getProtocolVersion((err,prot)=>{
+                var proto = prot;
+                console.log("protocol is ",proto);
+                document.getElementById('proto').innerHTML=proto;
+                       
+            });
+            var accounts=web3.eth.getAccounts((err,acc)=>{
+                var accounts=acc;
+                document.getElementById('accounts').innerHTML=accounts;
+            })
+          
+            
+            
+            
+    </script>
+ </body>
+</html>
